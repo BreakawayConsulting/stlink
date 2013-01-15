@@ -167,7 +167,7 @@ send_recv(struct stlink_libusb* handle,
         res = handle->rep_trans->actual_length;
     }
 
-    return handle->rep_trans->actual_length;
+    return res;
 }
 
 static inline int

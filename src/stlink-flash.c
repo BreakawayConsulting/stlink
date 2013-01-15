@@ -147,7 +147,9 @@ unlock_flash(stlink_t *sl)
     if ((sl->chip_id == STM32_CHIPID_F2) || (sl->chip_id == STM32_CHIPID_F4))
     {
         addr = FLASH_F4_KEYR;
-    } else {
+    }
+    else
+    {
         addr = FLASH_KEYR;
     }
 
@@ -441,6 +443,10 @@ write_flash_cr_snb(stlink_t *sl, uint32_t n)
     uint32_t x;
     st_error_t r;
     r = read_flash_cr(sl, &x);
+    if (r != ST_SUCCESS)
+    {
+        return r;
+    }
     x &= ~FLASH_F4_CR_SNB_MASK;
     x |= (n << FLASH_F4_CR_SNB);
     x |= (1 << FLASH_F4_CR_SER);
